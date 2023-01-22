@@ -67,6 +67,7 @@
     background-color: red;
     color: white;
     text-align: center;
+    border-bottom-left-radius: 10px;
 
     button {
         background-color:transparent;
@@ -134,9 +135,11 @@
       ". . ."
       ". . .";
     grid-area: alert;
-    background-color: rgb(249, 249, 26);
+    background-color: rgb(6, 6, 6);
     .c1{
         background-color:red;
+        animation: animationFirst 2s infinite;
+
 
         button {
         background-color:transparent;
@@ -155,6 +158,14 @@
         &:hover {
             color: black;
             border: none;
+        }
+        @keyframes animationFirst{
+          0% {
+            background-color:rgb(248, 22, 6);
+          }
+          100% {
+            background-color: rgb(6, 7, 6);
+          }
         }
     }
     }
@@ -220,6 +231,7 @@
     .c9{
         background-color: rgb(245, 144, 3);
         animation: animationFrames 2s infinite;
+        border-bottom-right-radius: 10px;
         @keyframes animationFrames{
             0% {
               background-color:blueviolet;
@@ -250,6 +262,7 @@
     background-color: rgb(7, 3, 242);
     color: white;
     text-align: center;
+    border-top-left-radius: 10px;
 
     button {
         background-color:transparent;
@@ -280,6 +293,8 @@
   
   .alert2 { grid-area: alert2; 
     background-color: rgb(19, 19, 19);
+    border-top-right-radius: 10px;
+
 
     button {
         background-color:transparent;
@@ -344,6 +359,8 @@
     position: relative;
     grid-area: photo; 
     background-image: url(./img/BlueSunGlaring.jpg);
+    // background-image: url(./img/astronaut-60582_1920.jpg);
+
     background-size: cover;
     background-repeat: no-repeat;
     font-family: 'nasalization';
@@ -358,5 +375,115 @@
         padding-left: 10px;
 
     }}
+
+    .Register { 
+      position: relative;
+      grid-area: photo; 
+      background-color: rgb(5, 0, 0);
+    // background-image: url(./img/BlueSunGlaring.jpg);
+
+      background-image: url(./img/astronaut-60582_1920.jpg);
+      // background-size: cover;
+      background-repeat: no-repeat;
+      font-family: 'nasalization';
+  
+  
+      .formWrapper {
+        position: absolute;
+        top: 40%;
+        left: 30%;
+        transform: translate(-50%, -50%);
+        background-color: rgb(30, 1, 1);
+        padding: 20px 60px;
+        border-radius: 10px;
+        height: 300px;
+        width: 400px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    
+        .logo {
+          color: #5d5b8d;
+          font-weight: bold;
+          font-size: 24px;
+    
+        }
+    
+        .title {
+          color: #5d5b8d;
+          font-size: 12px;
+        }
+    
+        form {
+          display: flex;
+          flex-direction: column;
+          gap: 25px;
+    
+          input {
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            width: 250px;
+            border-bottom: 5px solid #f50511;
+
+            &::placeholder {
+              color: rgb(7, 6, 6);
+              font-size: 23px;
+              font-family: 'nasalization';
+
+            }
+          }
+    
+          button {
+            background-color: #051bdf;
+            color: white;
+            padding: 10px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+          }
+    
+          label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #8da4f1;
+            font-size: 12px;
+            cursor: pointer;
+    
+            img {
+              width: 32px;
+            }
+          }
+        }
+        p {
+          color: #5d5b8d;
+          font-size: 12px;
+          margin-top: 10px;
+        }
+      }
+    }
+    
+
+    .Login { 
+      position: relative;
+      grid-area: photo; 
+      background-color: rgb(245, 10, 10);
+      background-size: cover;
+      background-repeat: no-repeat;
+      font-family: 'nasalization';
+  
+  
+      p{
+          font-size: 20px;
+          color:white;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          padding-left: 10px;
+  
+      }
+    }
   
   
