@@ -17,6 +17,7 @@ app
 sequelize.initDb()
 
 require('./src/routes/createUser')(app)
+require('./src/routes/login')(app)
 
 app.get('/', (req, res) => res.send('Hello'))
 

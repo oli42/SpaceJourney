@@ -19,7 +19,7 @@ function Register() {
 
 
   async function handleClick(infos: FormValues){
-    console.log(infos)
+
     let url: string = 'http://localhost:4000/createUser';
     const response = await fetch(url, { method: "POST",
     headers: {
@@ -27,15 +27,29 @@ function Register() {
     'Access-Control-Allow-Origin' : '*'
   },
   body: JSON.stringify(infos)
-})
+  })
   const result = await response.json();
-  console.log(result)
-  }
+}
+
+async function handleLogin(infos: FormValues){
+
+  let url_: string = 'http://localhost:4000/login';
+  const response_ = await fetch(url_, { method: "POST",
+  headers: {
+  'Content-Type': 'application/json',
+  'Access-Control-Allow-Origin' : '*'
+  },
+  body: JSON.stringify(infos)
+  }) 
+  const result_ = await response_.json();
+}
   
 
   const onSubmit: SubmitHandler<FormValues> = () =>{
     const  infos = getValues()
+    const copy = infos;
     handleClick(infos);
+    // handleLogin(copy)
     navigation('/MyGal');
 
   }

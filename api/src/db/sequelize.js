@@ -17,6 +17,7 @@ const User = UserModel(sequelize, DataTypes)
 
 const initDb = () => {
 
+//    return  sequelize.sync()
    return  sequelize.sync({force:true})
     .then(_=> console.log('DB synchronized'))
 }
