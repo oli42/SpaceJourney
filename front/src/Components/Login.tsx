@@ -1,15 +1,50 @@
 import React from 'react'
+import { useForm, SubmitHandler } from "react-hook-form";
+import '../Style/style.scss'
+import { Navigate, useNavigate } from 'react-router-dom';
+
+
+type FormValues = {
+  email: string;
+  password: string;
+};
 
 function Login() {
+  const { register, handleSubmit, getValues } = useForm<FormValues>();
+  let navigation = useNavigate();
+
+
+  async function handleClick(infos: FormValues){
+    console.log(infos)
+    let url: string = 'http://localhost:4000/login';
+    const response = await fetch(url, { method: "POST",
+    headers: {
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin' : '*'
+  },
+  body: JSON.stringify(infos)
+})
+  const result = await response.json();
+  console.log(result)
+  }
+  
+
+  const onSubmit: SubmitHandler<FormValues> = () =>{
+    const  infos = getValues()
+    handleClick(infos);
+    navigation('/MyGal');
+
+  }
+
   return (
     <div className="container">
-    <div className="header"><h1>My Space Journey</h1></div>
+    <div className="header"></div>
     <div className="footer"></div>
     <div className="register">
       <div className="gif"></div>
       <div className="button">
           <div className="register-b">
-          <button>REGISTER</button>
+          <button onClick={() => navigation('/Register')}>REGISTER</button>
           </div>
           <div className="login-b">
             <button>LOGIN</button>
@@ -26,17 +61,27 @@ function Login() {
             <div className='c9'></div>
           </div>
           <div className="topgallery">
-          <button>TOP GALLERY</button>
+          <button>NASA GALLERY</button>
           </div>
         <div className="alert2">
           <button>ALERT</button>
         </div>
-        <div className="alert3"><button>« That’s one small step for man, one giant leap for mankind ».</button></div>
+        <div className="alert3"><button></button></div>
       </div>
       <div className="col1"></div>
       <div className="col2"></div>
     </div>
-    <div className="Login"></div>
+    <div className="Login">
+    <div className='formWrapper'>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <input type="email" {...register("email", { required: true })} placeholder='email'/>
+          <input type="password" {...register("password", { required: true })} placeholder='password'/>
+
+          {/* <input type="submit" /> */}
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
   </div>
   )
 }

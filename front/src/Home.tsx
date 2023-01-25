@@ -1,30 +1,25 @@
 import { useState } from 'react'
-import './style.scss'
+import './Style/style.scss'
 import { Navigate, useNavigate } from 'react-router-dom';
 
 function Home() {
 
     let navigation = useNavigate();
 
-    const handleRegister = () => {
-        navigation('/Register');
-    }
-    const handleLogin = () => {
-        navigation('/Login');
-    }
+   
   return (
    
     <div className="container">
-    <div className="header"><h1>My Space Journey</h1></div>
+    <div className="header"></div>
     <div className="footer"></div>
     <div className="register">
       <div className="gif"></div>
       <div className="button">
           <div className="register-b">
-          <button onClick={handleRegister}>REGISTER</button>
+          <button  onClick={() => navigation('/Register')}>REGISTER</button>
           </div>
           <div className="login-b">
-            <button onClick={handleLogin}>LOGIN</button>
+            <button  onClick={() => navigation('/Login')}>LOGIN</button>
           </div>
           <div className="alert">
             <div className='c1'></div>
@@ -38,17 +33,24 @@ function Home() {
             <div className='c9'></div>
           </div>
           <div className="topgallery">
-          <button>TOP GALLERY</button>
+          <button>NASA GALLERY</button>
           </div>
         <div className="alert2">
           <button>ALERT</button>
         </div>
-        <div className="alert3"><button>« That’s one small step for man, one giant leap for mankind ».</button></div>
+        <div className="alert3"><button></button></div>
       </div>
       <div className="col1"></div>
       <div className="col2"></div>
     </div>
-    <div className="photo"><p>Nasa pic of the day</p></div>
+    <div className="photo">
+        <div className='title'>
+        <h1>My Space Journey</h1>
+        </div>
+        <div className='buz'>
+          <p>"That's one small step for man, one giant leap for mankind"</p>
+        </div>
+        </div>
   </div>
   )
 }

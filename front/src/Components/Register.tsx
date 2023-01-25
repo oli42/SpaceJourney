@@ -1,19 +1,48 @@
 import React from 'react'
 import { Form } from 'react-router-dom'
 import { useForm, SubmitHandler } from "react-hook-form";
+import '../Style/style.scss'
+import { Navigate, useNavigate } from 'react-router-dom';
+
 
 type FormValues = {
   firstName: string;
   lastName: string;
   email: string;
+  password: string;
 };
+
 function Register() {
 
-  const { register, handleSubmit } = useForm<FormValues>();
-  const onSubmit: SubmitHandler<FormValues> = data => console.log(data);
+  const { register, handleSubmit, getValues } = useForm<FormValues>();
+  let navigation = useNavigate();
+
+
+  async function handleClick(infos: FormValues){
+    console.log(infos)
+    let url: string = 'http://localhost:4000/createUser';
+    const response = await fetch(url, { method: "POST",
+    headers: {
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin' : '*'
+  },
+  body: JSON.stringify(infos)
+})
+  const result = await response.json();
+  console.log(result)
+  }
+  
+
+  const onSubmit: SubmitHandler<FormValues> = () =>{
+    const  infos = getValues()
+    handleClick(infos);
+    navigation('/MyGal');
+
+  }
+    
   return (
     <div className="container">
-    <div className="header"><h1>My Space Journey</h1></div>
+    <div className="header"></div>
     <div className="footer"></div>
     <div className="register">
       <div className="gif"></div>
@@ -22,7 +51,7 @@ function Register() {
           <button>REGISTER</button>
           </div>
           <div className="login-b">
-            <button>LOGIN</button>
+            <button onClick={()=> navigation('/Login')}>LOGIN</button>
           </div>
           <div className="alert">
             <div className='c1'></div>
@@ -36,12 +65,12 @@ function Register() {
             <div className='c9'></div>
           </div>
           <div className="topgallery">
-          <button>TOP GALLERY</button>
+          <button>NASA GALLERY</button>
           </div>
         <div className="alert2">
           <button>ALERT</button>
         </div>
-        <div className="alert3"><button>« That's one small step for man, one giant leap for mankind ».</button></div>
+        <div className="alert3"><button></button></div>
       </div>
       <div className="col1"></div>
       <div className="col2"></div>
@@ -52,9 +81,8 @@ function Register() {
           <input {...register("firstName", { required: true })} placeholder='firstname' />
           <input {...register("lastName", { required: true })} placeholder='lastName'/>
           <input type="email" {...register("email", { required: true })} placeholder='email'/>
-
-          {/* <input type="submit" /> */}
-          {/* <button>Submit</button> */}
+          <input type="password" {...register("password", { required: true })} placeholder='password'/>
+          <button type="submit">Submit</button>
         </form>
       </div>
     </div>
