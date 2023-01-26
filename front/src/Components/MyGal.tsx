@@ -29,7 +29,7 @@ function MyGal() {
             <div className='c9'></div>
           </div>
           <div className="topgallery">
-          <button onClick={() => navigation('/Nasa')}>NASA GALLERY</button>
+          <button onClick={() => navigation('/Nasa')}>NASA PIC OF THE DAY</button>
           </div>
         <div className="alert2">
           <button>ALERT</button>

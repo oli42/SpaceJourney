@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useForm, SubmitHandler } from "react-hook-form";
 import '../Style/style.scss'
 import { Navigate, useNavigate } from 'react-router-dom';
@@ -15,7 +15,7 @@ function Login() {
 
 
   async function handleClick(infos: FormValues){
-    console.log(infos)
+
     let url: string = 'http://localhost:4000/login';
     const response = await fetch(url, { method: "POST",
     headers: {
@@ -23,16 +23,25 @@ function Login() {
     'Access-Control-Allow-Origin' : '*'
   },
   body: JSON.stringify(infos)
+
 })
+
   const result = await response.json();
-  console.log(result)
+  
+  if (result.message == "A problem occurred. "){
+    navigation("/");
+    return ;
   }
+  else{
+    navigation('/MyGal');
+  }
+
+}
   
 
   const onSubmit: SubmitHandler<FormValues> = () =>{
     const  infos = getValues()
     handleClick(infos);
-    navigation('/MyGal');
 
   }
 
@@ -61,7 +70,7 @@ function Login() {
             <div className='c9'></div>
           </div>
           <div className="topgallery">
-          <button>NASA GALLERY</button>
+          <button>NASA PIC OF THE DAY</button>
           </div>
         <div className="alert2">
           <button>ALERT</button>

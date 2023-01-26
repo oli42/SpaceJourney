@@ -5,10 +5,11 @@ import  dotenv from 'dotenv'
 function Nasa() {
 
   let navigation = useNavigate();
-  const [data, setData] = useState({ image: '', title: '' });
+  const [data, setData] = useState({ image: '', title: '', explanation: '' });
+  const [hide, setHide] = useState(false);
 
   async function handleData(){
-        const key = '';
+        const key = 'p9rD7ZTgD0AgYz29qAWpbas36swmMlw2cndTj87I';
       let url = `https://api.nasa.gov/planetary/apod?api_key=${key}` 
       const response  = await fetch(url, {method: "GET",
       headers: {
@@ -18,7 +19,7 @@ function Nasa() {
       const result = await response.json();
       console.log(result)
 
-      setData({ image: result.url, title: result.title });
+      setData({ image: result.url, title: result.title, explanation: result.explanation });
   }
   useEffect(()=>{
     handleData()
@@ -49,7 +50,7 @@ function Nasa() {
             <div className='c9'></div>
           </div>
           <div className="topgallery">
-          <button>NASA GALLERY</button>
+          <button>NASA PIC OF THE DAY</button>
           </div>
         <div className="alert2">
           <button>ALERT</button>
@@ -60,11 +61,15 @@ function Nasa() {
       <div className="col2"></div>
     </div>
     <div className="photo-nasa">
-        {/* <div className='img'> */}
             <img src={data.image} alt={data.title} />
             <h2>{data.title}</h2>
-
-        {/* </div> */}
+            <p className='infos'>{hide ? data.explanation : null}</p>
+            {data.image ? 
+            <button>Add to My Gallery</button>
+            :null}
+            {data.image  ? 
+            <button onClick={()=> {!hide ? setHide(true) : setHide(false)} } className='getInfos'>Infos</button>
+            :null}
     </div>
   </div>
   )

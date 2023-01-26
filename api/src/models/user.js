@@ -23,7 +23,16 @@ module.exports = (sequelize, DataTypes) => {
         password: {
             type: DataTypes.STRING,
             allowNull: false,
-        }
+        },
+        // myPics: { 
+        //     type: DataTypes.STRING, 
+        //     get: function() {
+        //         return JSON.parse(this.getDataValue('myPics'));
+        //     }, 
+        //     set: function(val) {
+        //         return this.setDataValue('myPics', JSON.stringify(val));
+        //     }
+        // }
     },
     {
         timestamps: true,
