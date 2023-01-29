@@ -32,8 +32,11 @@ function Home() {
             <div className='c8'></div>
             <div className='c9'></div>
           </div>
-          <div className="topgallery">
-          <button>NASA PIC OF THE DAY</button>
+          <div className='topgallery'>
+          <button>TOP GALLERY</button>
+          </div>
+          <div className="nasaPod">
+          <button>NASA POD</button>
           </div>
         <div className="alert2">
           <button>ALERT</button>

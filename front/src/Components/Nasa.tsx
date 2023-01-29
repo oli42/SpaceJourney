@@ -5,11 +5,28 @@ import  dotenv from 'dotenv'
 function Nasa() {
 
   let navigation = useNavigate();
-  const [data, setData] = useState({ image: '', title: '', explanation: '' });
+  const [data, setData] = useState({ image: '', title: '', explanation: ''});
   const [hide, setHide] = useState(false);
 
+  async function handleSavePic() {
+    let url: string = 'http://localhost:4000/createPic';
+    const response = await fetch(url, { method: "POST",
+    headers: {
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin' : '*'
+  },
+  body: JSON.stringify({
+    url: data.image,
+    title: data.title,
+    explanation: data.explanation,
+    UserId: 1,
+  })
+  })
+  const result = await response.json();
+  }
+  
   async function handleData(){
-        const key = 'p9rD7ZTgD0AgYz29qAWpbas36swmMlw2cndTj87I';
+        const key = '';
       let url = `https://api.nasa.gov/planetary/apod?api_key=${key}` 
       const response  = await fetch(url, {method: "GET",
       headers: {
@@ -17,13 +34,12 @@ function Nasa() {
       'Access-Control-Allow-Origin' : '*'
       }})
       const result = await response.json();
-      console.log(result)
-
       setData({ image: result.url, title: result.title, explanation: result.explanation });
   }
   useEffect(()=>{
     handleData()
   }, [])
+
 
   return (
     <div className="container">
@@ -49,8 +65,11 @@ function Nasa() {
             <div className='c8'></div>
             <div className='c9'></div>
           </div>
-          <div className="topgallery">
-          <button>NASA PIC OF THE DAY</button>
+          <div className='topgallery'>
+          <button>TOP GALLERY</button>
+          </div>
+          <div className="nasaPod">
+          <button>NASA POD</button>
           </div>
         <div className="alert2">
           <button>ALERT</button>
@@ -65,10 +84,10 @@ function Nasa() {
             <h2>{data.title}</h2>
             <p className='infos'>{hide ? data.explanation : null}</p>
             {data.image ? 
-            <button>Add to My Gallery</button>
+            <button onClick={()=> handleSavePic()}>Add to My Gallery</button>
             :null}
             {data.image  ? 
-            <button onClick={()=> {!hide ? setHide(true) : setHide(false)} } className='getInfos'>Infos</button>
+            <button onClick={()=> {!hide ? setHide(true) : setHide(false)} } >Infos</button>
             :null}
     </div>
   </div>

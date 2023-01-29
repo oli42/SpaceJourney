@@ -3,6 +3,7 @@ const morgan = require('morgan')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const sequelize = require('./src/db/sequelize')
+// require('./src/models/relations')
 
 const app = express()
 const port = 4000
@@ -16,8 +17,12 @@ app
 
 sequelize.initDb()
 
+require('./src/routes/users')(app)
+require('./src/routes/pics')(app)
 require('./src/routes/createUser')(app)
 require('./src/routes/login')(app)
+require('./src/routes/createPic')(app)
+
 
 app.get('/', (req, res) => res.send('Hello'))
 

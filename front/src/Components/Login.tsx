@@ -11,6 +11,7 @@ type FormValues = {
 
 function Login() {
   const { register, handleSubmit, getValues } = useForm<FormValues>();
+  const [error, setError] = useState("");
   let navigation = useNavigate();
 
 
@@ -29,7 +30,8 @@ function Login() {
   const result = await response.json();
   
   if (result.message == "A problem occurred. "){
-    navigation("/");
+    // navigation("/");
+    setError("wrong identification");
     return ;
   }
   else{
@@ -69,8 +71,11 @@ function Login() {
             <div className='c8'></div>
             <div className='c9'></div>
           </div>
-          <div className="topgallery">
-          <button>NASA PIC OF THE DAY</button>
+          <div className='topgallery'>
+          <button>TOP GALLERY</button>
+          </div>
+          <div className="nasaPod">
+          <button>NASA POD</button>
           </div>
         <div className="alert2">
           <button>ALERT</button>
@@ -88,6 +93,7 @@ function Login() {
 
           {/* <input type="submit" /> */}
           <button type="submit">Submit</button>
+          <p>{error}</p>
         </form>
       </div>
     </div>
