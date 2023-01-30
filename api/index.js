@@ -22,6 +22,8 @@ require('./src/routes/pics')(app)
 require('./src/routes/createUser')(app)
 require('./src/routes/login')(app)
 require('./src/routes/createPic')(app)
+require('./src/routes/userPics')(app)
+require('./src/routes/deletePic')(app)
 
 
 app.get('/', (req, res) => res.send('Hello'))

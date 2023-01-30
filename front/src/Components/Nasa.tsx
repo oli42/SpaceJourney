@@ -26,7 +26,7 @@ function Nasa() {
   }
   
   async function handleData(){
-        const key = '';
+        const key = 'p9rD7ZTgD0AgYz29qAWpbas36swmMlw2cndTj87I';
       let url = `https://api.nasa.gov/planetary/apod?api_key=${key}` 
       const response  = await fetch(url, {method: "GET",
       headers: {
@@ -34,10 +34,15 @@ function Nasa() {
       'Access-Control-Allow-Origin' : '*'
       }})
       const result = await response.json();
+      console.log(result)
+      
       setData({ image: result.url, title: result.title, explanation: result.explanation });
   }
   useEffect(()=>{
-    handleData()
+    // if (data.image == ''){
+      console.log('POD')
+      handleData()
+    // }
   }, [])
 
 
@@ -83,12 +88,8 @@ function Nasa() {
             <img src={data.image} alt={data.title} />
             <h2>{data.title}</h2>
             <p className='infos'>{hide ? data.explanation : null}</p>
-            {data.image ? 
             <button onClick={()=> handleSavePic()}>Add to My Gallery</button>
-            :null}
-            {data.image  ? 
             <button onClick={()=> {!hide ? setHide(true) : setHide(false)} } >Infos</button>
-            :null}
     </div>
   </div>
   )

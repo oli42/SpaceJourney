@@ -570,7 +570,7 @@
         background-color: white;
         transform: translate(-50%, -50%);
         top:-3%;
-        left: 28%;
+        left: 30%;
         color: black;
         font-size: 20px;
         height: 30px;
@@ -612,32 +612,13 @@
       // background-color: white;
       transform: translate(-50%, -50%);
       top:1%;
-      left: 28%;
+      left: 33%;
       font-family: 'nasalization';
-      text-align: center;
-      justify-content: center;
+      // text-align: center;
+      // justify-content: center;
 
     }
     
-    .getInfos{
-      position: absolute;
-      background-color: transparent;
-      top: 87%;
-      left: 82%;
-      color:rgb(250, 250, 250);
-      font-size: 20px;
-
-      &:hover {
-        color: blue;
-        border: none;
-      }
-      &:focus{
-        // color: rgb(51, 3, 244);
-        outline:none;
-        border: none;
-      }
-
-    }
 
     .infos{
       position: absolute;
@@ -663,17 +644,17 @@
     }
 
 
-    .buz{
-      position: absolute;
-      top: 62%;
-      left: 44%;
-      width: 800px;
-      height: 150px;
+    // .buz{
+    //   position: absolute;
+    //   top: 62%;
+    //   left: 44%;
+    //   width: 800px;
+    //   height: 150px;
 
-      p{
-        font-size: 25px;
-      }
-    }
+    //   p{
+    //     font-size: 25px;
+    //   }
+    // }
   }
 
   .Register { 
@@ -863,6 +844,104 @@
 
       }
     }
+    
+  }
+
+  .myGal { 
+    position: relative;
+    grid-area: photo; 
+    background-color: transparent;
+    // background-size: cover;
+    // background-repeat: no-repeat;
+    // font-size: 60px;
+    font-family: 'nasalization';
+    text-align: center;
+    height: 98%;
+    color:white;
+    padding-top: 10px;
+    padding-left: 20px;
+    font-size: 18px;
+
+    img{
+      max-width: 1200px;
+      min-width: 1200px;
+      max-height: 800px;
+      min-height: 800px;
+      border-radius: 10px;
+    
+       
+    } 
+
+    button{
+        position: relative;
+        background-color: white;
+        transform: translate(-50%, -50%);
+        top:-3%;
+        left: 32%;
+        color: black;
+        font-size: 20px;
+        height: 30px;
+        padding-bottom: 30px;
+
+        &:hover {
+          color: red;
+          border: none;
+        }
+        &:focus{
+          outline:none;
+          border: none;
+
+        }
+    }
+
+    h2{
+      position: relative;
+      // background-color: white;
+      transform: translate(-50%, -50%);
+      top:1%;
+      left: 33%;
+      font-family: 'nasalization';
+      text-align: center;
+      justify-content: center;
+
+    }
+    
+    .infos{
+      position: absolute;
+      background-color:transparent;
+      border-radius: 10px;
+      color:white;
+      font-size: 25px;
+      line-height: 35px;
+      padding-left: 10px;
+      padding-right: 10px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      text-align:justify;
+
+      max-width: 900px;
+      max-height: 600px;
+      // top:-20%;
+      // left: -8%;
+      top:12%;
+      left: 21%;
+
+     
+    }
+
+    .swiper-button-next{
+      color: white !important;
+      position: relative;
+      top:-59%;
+      left: 92%;
+    }
+    .swiper-button-prev {
+      color:white !important;
+      position: relative;
+      top:-57%;
+      left: 6%;
+    }
+
     
   }
   
