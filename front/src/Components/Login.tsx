@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useForm, SubmitHandler } from "react-hook-form";
 import '../Style/style.scss'
 import { Navigate, useNavigate } from 'react-router-dom';
+import { userContext } from '../Context/userContext';
 
 
 type FormValues = {
@@ -13,7 +14,7 @@ function Login() {
   const { register, handleSubmit, getValues } = useForm<FormValues>();
   const [error, setError] = useState("");
   let navigation = useNavigate();
-
+  const user = useContext(userContext);
 
   async function handleClick(infos: FormValues){
 
@@ -28,6 +29,7 @@ function Login() {
 })
 
   const result = await response.json();
+  console.log('login',result)
   
   if (result.message == "A problem occurred. "){
     // navigation("/");
@@ -35,7 +37,8 @@ function Login() {
     return ;
   }
   else{
-    navigation('/MyGal');
+    user?.setUserState({id: result.data.id, email: result.data.email, connected: true})
+    navigation('/');
   }
 
 }
@@ -72,7 +75,7 @@ function Login() {
             <div className='c9'></div>
           </div>
           <div className='topgallery'>
-          <button>TOP GALLERY</button>
+          <button>GALLERIES</button>
           </div>
           <div className="nasaPod">
           <button>NASA POD</button>

@@ -1,12 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import  dotenv from 'dotenv'
+import { userContext } from '../Context/userContext';
+
 
 function Nasa() {
 
   let navigation = useNavigate();
   const [data, setData] = useState({ image: '', title: '', explanation: ''});
   const [hide, setHide] = useState(false);
+  const user = useContext(userContext);
+
 
   async function handleSavePic() {
     let url: string = 'http://localhost:4000/createPic';
@@ -19,14 +23,14 @@ function Nasa() {
     url: data.image,
     title: data.title,
     explanation: data.explanation,
-    UserId: 1,
+    UserId: user?.userState.id,
   })
   })
   const result = await response.json();
   }
   
   async function handleData(){
-        const key = 'p9rD7ZTgD0AgYz29qAWpbas36swmMlw2cndTj87I';
+        const key = '';
       let url = `https://api.nasa.gov/planetary/apod?api_key=${key}` 
       const response  = await fetch(url, {method: "GET",
       headers: {
@@ -34,15 +38,16 @@ function Nasa() {
       'Access-Control-Allow-Origin' : '*'
       }})
       const result = await response.json();
-      console.log(result)
-      
       setData({ image: result.url, title: result.title, explanation: result.explanation });
   }
+
+  const handleLogOut = () =>{
+    user?.setUserState({id: 0, email: '', connected: false});
+    navigation('/')
+  }
+
   useEffect(()=>{
-    // if (data.image == ''){
-      console.log('POD')
       handleData()
-    // }
   }, [])
 
 
@@ -57,7 +62,7 @@ function Nasa() {
           <button onClick={()=> navigation('/MyGal')}>MY GALLERY</button>
           </div>
           <div className="login-b2">
-            <button>LOGOUT</button>
+            <button onClick={handleLogOut}>LOGOUT</button>
           </div>
           <div className="alert">
             <div className='c1'></div>
@@ -71,7 +76,7 @@ function Nasa() {
             <div className='c9'></div>
           </div>
           <div className='topgallery'>
-          <button>TOP GALLERY</button>
+          <button>GALLERIES</button>
           </div>
           <div className="nasaPod">
           <button>NASA POD</button>

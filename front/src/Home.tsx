@@ -1,11 +1,12 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import './Style/style.scss'
 import { Navigate, useNavigate } from 'react-router-dom';
+import { userContext } from './Context/userContext';
 
 function Home() {
 
-    let navigation = useNavigate();
-
+  let navigation = useNavigate();
+  const user = useContext(userContext);
    
   return (
    
@@ -16,10 +17,19 @@ function Home() {
       <div className="gif"></div>
       <div className="button">
           <div className="register-b">
+          {user?.userState.connected ?
+          <button  onClick={() => navigation('/MyGal')}>MY GALLERY</button>
+            :
           <button  onClick={() => navigation('/Register')}>REGISTER</button>
+          }
           </div>
           <div className="login-b">
-            <button  onClick={() => navigation('/Login')}>LOGIN</button>
+            {user?.userState.connected ?
+            <button  onClick={() => user.setUserState({id: 0, email: '', connected: false})}> LOGOUT  </button>
+            :
+            <button  onClick={() => navigation('/Login')}> LOGIN  </button>
+            
+           }
           </div>
           <div className="alert">
             <div className='c1'></div>
@@ -33,10 +43,14 @@ function Home() {
             <div className='c9'></div>
           </div>
           <div className='topgallery'>
-          <button>TOP GALLERY</button>
+          <button>GALLERIES</button>
           </div>
           <div className="nasaPod">
+          {user?.userState.connected ?
+          <button  onClick={() => navigation('/Nasa')}>NASA POD</button>
+            :
           <button>NASA POD</button>
+          }
           </div>
         <div className="alert2">
           <button>ALERT</button>

@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Navigate, useNavigate } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import { Navigation, EffectFade } from 'swiper';
 import 'swiper/css/navigation';
 import 'swiper/css/effect-fade';
+import { userContext } from '../Context/userContext';
 
 interface Pic {
   url: string, 
@@ -15,10 +16,13 @@ interface Pic {
 
 
 function MyGal() {
+
   let navigation = useNavigate();
   const [data, setData] = useState<Pic[]>()
   let value = 1;
   const [hide, setHide] = useState(false);
+  const user = useContext(userContext);
+
 
   async function handleDeletePic(item: Pic) {
     let url: string = 'http://localhost:4000/deletePic';
@@ -29,7 +33,7 @@ function MyGal() {
   },
   body: JSON.stringify({
     title: item.title,
-    UserId: 1,
+    UserId: user?.userState.id,
   })
   })
   const result = await response.json();
@@ -43,14 +47,16 @@ function MyGal() {
     'Access-Control-Allow-Origin' : '*'
   }
   })
-   const result = await response.json();
-  console.log(result.data[0])
-  // console.log(result.data.[0])
-  // setData({ url: result.data[0].url, title: result.data[0].title, explanation: result.data[0].explanation })
+  const result = await response.json();
   setData(result.data)
-  console.log('data',data)
 }
- 
+
+const handleLogOut = () =>{
+  user?.setUserState({id: 0, email: '', connected: false});
+  navigation('/')
+}
+
+
 
   useEffect(()=>{
     handleGetPics();
@@ -67,7 +73,7 @@ function MyGal() {
           <button>MY GALLERY</button>
           </div>
           <div className="login-b2">
-            <button>LOGOUT</button>
+            <button onClick={handleLogOut}>LOGOUT</button>
           </div>
           <div className="alert">
             <div className='c1'></div>
@@ -81,13 +87,13 @@ function MyGal() {
             <div className='c9'></div>
           </div>
           <div className='topgallery'>
-          <button>TOP GALLERY</button>
+          <button>GALLERIES</button>
           </div>
           <div className="nasaPod">
           <button onClick={() => navigation('/Nasa')}>NASA POD</button>
           </div>
         <div className="alert2">
-          <button>ALERT</button>
+          <button>USERS</button>
         </div>
         <div className="alert3"><button></button></div>
       </div>
@@ -98,8 +104,8 @@ function MyGal() {
       <Swiper 
         modules={[Navigation, EffectFade]}
         navigation
-        effect='fade'
-        speed={800}
+        // effect='fade'
+        speed={100}
         slidesPerView={1}
         loop
         className='myGal'

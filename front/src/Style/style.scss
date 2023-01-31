@@ -40,7 +40,7 @@
   
   .register {  
     display: grid;
-    grid-template-columns: 0.3fr 2.4fr 0.3fr;
+    grid-template-columns: 0.4fr 2.4fr 0.3fr;
     grid-template-rows: 0.9fr 2.5fr 0.1fr;
     gap: 0px 0px;
     grid-auto-flow: row;
@@ -87,7 +87,7 @@
     color: white;
     text-align: center;
     border-bottom-left-radius: 10px;
-    width: 300px;
+    width: 240px;
 
     button {
         background-color:transparent;
@@ -119,7 +119,7 @@
     color: white;
     text-align: center;
     border-bottom-left-radius: 10px;
-    width: 300px;
+    width: 240px;
 
     button {
         background-color:transparent;
@@ -144,6 +144,8 @@
         }
     }
   }
+
+  
   
   .login-b { 
     grid-area: login-b; 
@@ -217,51 +219,53 @@
       ". . .";
     grid-area: alert;
     background-color: rgb(6, 6, 6);
-    .c1{
+
+
+    .c2{
         background-color:red;
         animation: animationFirst 2s infinite;
 
 
-        button {
-        background-color:transparent;
-        color: white;
-        height: 100%;
-        width: 100%;
-        align-items: center;
-        justify-content: center;
-        font-size: 25px;
-        font-family: 'nasalization';
-        text-align: center;
+      //   button {
+      //   background-color:transparent;
+      //   color: white;
+      //   height: 100%;
+      //   width: 100%;
+      //   align-items: center;
+      //   justify-content: center;
+      //   font-size: 25px;
+      //   font-family: 'nasalization';
+      //   text-align: center;
 
-        border: none;
-        cursor: pointer;
+      //   border: none;
+      //   cursor: pointer;
 
-        &:hover {
-            color: black;
-            border: none;
+      //   &:hover {
+      //       color: black;
+      //       border: none;
+      //   }
+      // }
+      @keyframes animationFirst{
+        0% {
+          background-color:rgb(248, 22, 6);
         }
-        @keyframes animationFirst{
-          0% {
-            background-color:rgb(248, 22, 6);
-          }
-          100% {
-            background-color: rgb(6, 7, 6);
-          }
+        100% {
+          background-color: rgb(163, 92, 5);
         }
     }
     }
-    .c2{
+    .c1{
         background-color:blue;
-        // animation: animation 2s infinite;
+        animation: animation 2s infinite;
 
-        // @keyframes animation{
-        //     0% {
-        //       background-color:blue;
-        //     }
-        //     100% {
-        //       background-color: rgb(4, 242, 222);
-        //     }
-        //   }
+        @keyframes animation{
+            0% {
+              background-color:blue;
+            }
+            100% {
+              background-color: rgb(4, 242, 222);
+            }
+          }
     }
     .c3{
         background-color:rgb(249, 249, 251);
@@ -278,7 +282,7 @@
     }
     .c4{
         background-color: transparent;
-        animation: animationS 1s infinite;
+        animation: animationS 2s infinite;
 
         @keyframes animationS{
           0% {
@@ -303,7 +307,7 @@
     }
     .c6{
         background-color: rgb(39, 250, 6);
-        animation: animationF1 1s infinite;
+        animation: animationF1 2s infinite;
         @keyframes animationF1{
             0% {
               background-color:rgb(18, 224, 8);
@@ -587,26 +591,6 @@
         }
     }
 
-    // p{
-    //   position: relative;
-    //   background-color:transparent;
-    //   transform: translate(50%, 50%);
-    //   border-radius: 10px;
-    //   color:white;
-    //   font-size: 35px;
-    //   line-height: 35px;
-    //   padding-left: 10px;
-    //   padding-right: 10px;
-    //   padding-top: 10px;
-    //   padding-bottom: 10px;
-    //   text-align:justify;
-
-    //   max-width: 900px;
-    //   max-height: 600px;
-    //   top:20%;
-    //   left: 21%;
-    // }
-
     h2{
       position: relative;
       // background-color: white;
@@ -619,13 +603,12 @@
 
     }
     
-
     .infos{
       position: absolute;
-      background-color:transparent;
+      background-color:rgb(104, 103, 103);
       border-radius: 10px;
       color:white;
-      font-size: 25px;
+      font-size: 26px;
       line-height: 35px;
       padding-left: 10px;
       padding-right: 10px;
@@ -635,9 +618,7 @@
 
       max-width: 900px;
       max-height: 600px;
-      // top:-20%;
-      // left: -8%;
-      top:12%;
+      top:7%;
       left: 21%;
 
      
@@ -908,10 +889,10 @@
     
     .infos{
       position: absolute;
-      background-color:transparent;
+      background-color:rgb(104, 103, 103);
       border-radius: 10px;
       color:white;
-      font-size: 25px;
+      font-size: 26px;
       line-height: 35px;
       padding-left: 10px;
       padding-right: 10px;
@@ -920,10 +901,10 @@
       text-align:justify;
 
       max-width: 900px;
-      max-height: 600px;
+      max-height: 620px;
       // top:-20%;
       // left: -8%;
-      top:12%;
+      top:7%;
       left: 21%;
 
      
