@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { Route, Routes} from 'react-router';
-import Home from './Home';
+import Home from './Pages/Home';
 import Register from './Components/Register';
 import Login from './Components/Login';
-import MyGal from './Components/MyGal';
-import Nasa from './Components/Nasa';
+import MyGal from './Pages/MyGal';
+import Nasa from './Pages/Nasa';
 import { userContext } from './Context/userContext'
 
 

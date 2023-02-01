@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import { Form } from 'react-router-dom'
 import { useForm, SubmitHandler } from "react-hook-form";
 import '../Style/style.scss'
 import { Navigate, useNavigate } from 'react-router-dom';
+import { userContext } from '../Context/userContext';
 
 
 type FormValues = {
@@ -16,6 +17,10 @@ function Register() {
 
   const { register, handleSubmit, getValues } = useForm<FormValues>();
   let navigation = useNavigate();
+  const user = useContext(userContext);
+  const [error, setError] = useState("");
+
+
 
 
   async function handleClick(infos: FormValues){
@@ -29,6 +34,14 @@ function Register() {
   body: JSON.stringify(infos)
   })
   const result = await response.json();
+  console.log(result)
+  if (result.message == "This user already exists"){
+    setError("This user already exists");
+    return
+  }
+  else{
+    navigation('/');
+  }
 }
 
 async function handleLogin(infos: FormValues){
@@ -42,15 +55,18 @@ async function handleLogin(infos: FormValues){
   body: JSON.stringify(infos)
   }) 
   const result_ = await response_.json();
+
+  user?.setUserState({id: result_.data.id, email: result_.data.email, connected: true})
+
 }
   
 
   const onSubmit: SubmitHandler<FormValues> = () =>{
     const  infos = getValues()
     const copy = infos;
+    console.log(infos)
     handleClick(infos);
-    // handleLogin(copy)
-    navigation('/MyGal');
+    // handleLogin(infos)
 
   }
     
@@ -100,6 +116,7 @@ async function handleLogin(infos: FormValues){
           <input type="email" {...register("email", { required: true })} placeholder='email'/>
           <input type="password" {...register("password", { required: true })} placeholder='password'/>
           <button type="submit">Submit</button>
+          <p>{error}</p>
         </form>
       </div>
     </div>

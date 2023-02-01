@@ -67,6 +67,22 @@
     border-bottom-right-radius: 10px;
     height: 500px;
   }
+
+  .alertGif { 
+    grid-area: gif; 
+    // background-image: url(../img/asgu.gif);  
+    background-image: url(../img/LM4p.gif);  
+    // background-image: url(../img/08uakhF.gif);  
+    background-size: cover;
+    // background-size: 1000px;
+    // border: solid 5px #f6f6f8;
+    background-repeat: no-repeat;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    height: 500px;
+  }
   
   .button {  
     display: grid;
@@ -605,10 +621,10 @@
     
     .infos{
       position: absolute;
-      background-color:rgb(104, 103, 103);
+      background-color:black;
       border-radius: 10px;
       color:white;
-      font-size: 26px;
+      font-size: 24px;
       line-height: 35px;
       padding-left: 10px;
       padding-right: 10px;
@@ -620,7 +636,8 @@
       max-height: 600px;
       top:7%;
       left: 21%;
-
+      overflow-y:scroll;
+      // scroll-padding: 2px;
      
     }
 
@@ -669,7 +686,7 @@
       border: solid 3px #f50505;
       padding: 20px 60px;
       border-radius: 10px;
-      height: 600px;
+      height: 630px;
       width: 350px;
       display: flex;
       flex-direction: column;
@@ -732,11 +749,11 @@
             }
           }
         }
-      p {
-        color: #5d5b8d;
-        font-size: 12px;
-        margin-top: 10px;
-      }
+        p{
+          font-size: 22px;
+          color:#f50505;
+          text-align: center;
+        }
     }
     
   }
@@ -813,16 +830,10 @@
         }
       }
 
-      // p {
-      //   color: #5d5b8d;
-      //   font-size: 12px;
-      //   margin-top: 10px;
-      // }
       p{
         font-size: 30px;
         color:#f50505;
         text-align: center;
-
       }
     }
     
@@ -889,10 +900,10 @@
     
     .infos{
       position: absolute;
-      background-color:rgb(104, 103, 103);
+      background-color:black;
       border-radius: 10px;
       color:white;
-      font-size: 26px;
+      font-size: 24px;
       line-height: 35px;
       padding-left: 10px;
       padding-right: 10px;
@@ -901,12 +912,13 @@
       text-align:justify;
 
       max-width: 900px;
-      max-height: 620px;
+      max-height: 600px;
       // top:-20%;
       // left: -8%;
       top:7%;
       left: 21%;
-
+      overflow-y:scroll;
+      // scroll-padding: 2px;
      
     }
 
