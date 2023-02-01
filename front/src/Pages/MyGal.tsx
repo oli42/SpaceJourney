@@ -20,10 +20,10 @@ function MyGal() {
 
   let navigation = useNavigate();
   const [data, setData] = useState<Pic[]>()
-  let value = 1;
   const [hide, setHide] = useState(false);
   const user = useContext(userContext);
   const [alertGif, setAlertGif] = useState("gif")
+  let value = user?.userState.id;
 
 
   async function handleDeletePic(item: Pic) {
@@ -94,7 +94,7 @@ const handleGif = (alert: any) => {
             <div className='c9'></div>
           </div>
           <div className='topgallery'>
-          <button>GALLERIES</button>
+          <button onClick={()=> navigation('/Galleries')}>GALLERIES</button>
           </div>
           <div className="nasaPod">
           <button onClick={() => navigation('/Nasa')}>NASA POD</button>

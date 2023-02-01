@@ -1,5 +1,6 @@
 const { Pic } = require('../db/sequelize')
-  
+const { User } = require('../db/sequelize')
+
 module.exports = (app) => {
     app.post('/deletePic', async (req, res)=> {
 
@@ -11,6 +12,11 @@ module.exports = (app) => {
         else{
             const message = `${req.body.title} doesn't exist in the database`
             res.json({ message, data: result })
+        }
+
+        const user = await User.findOne({ where:{ id: req.body.UserId} })
+        if (user){
+            User.update({nbrPics: user.nbrPics - 1, lastUrl: result.url}, { where: { id: user.id } })
         }
     })
 }

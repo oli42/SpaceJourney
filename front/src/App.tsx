@@ -6,6 +6,7 @@ import Login from './Components/Login';
 import MyGal from './Pages/MyGal';
 import Nasa from './Pages/Nasa';
 import { userContext } from './Context/userContext'
+import Galleries from './Pages/Galleries';
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Route path="login" element={<Login />}/>
         <Route path="mygal" element={<MyGal />}/>
         <Route path="nasa" element={<Nasa />}/>
+        <Route path="galleries" element={<Galleries />}/>
       </Routes>
     </userContext.Provider>
   )

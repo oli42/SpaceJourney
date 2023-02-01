@@ -25,6 +25,16 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
+        nbrPics: {
+            type: DataTypes.INTEGER,
+            defaultValue: 0,
+        },
+        lastUrl: {
+            type: DataTypes.STRING,
+            allowNull: true,
+
+        }
+
         // myPics: { 
         //     type: DataTypes.STRING, 
         //     get: function() {
@@ -34,11 +44,18 @@ module.exports = (sequelize, DataTypes) => {
         //         return this.setDataValue('myPics', JSON.stringify(val));
         //     }
         // }
+        
     },
     {
         timestamps: true,
         createdAt: 'created',
-        updatedAt: false
+        updatedAt: false,
+        // indexes: [
+        //   {unique:true, fields:['firstName']},
+        //   {unique:true, fields:['lastName']},
+        //   {unique:true, fields:['email']},
+        //   {unique:true, fields:['password']}
+        // ]
     }); 
     
     

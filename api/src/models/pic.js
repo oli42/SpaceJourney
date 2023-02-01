@@ -25,7 +25,16 @@ module.exports = (sequelize, DataTypes) => {
             defaultValue: 0,
         }
         
-    })
+    }
+    // {
+    //     indexes: [
+    //       {unique:true, fields:['url']},
+    //       {unique:true, fields:['title']},
+    //       {unique:true, fields:['explanation']},
+    //       {unique:true, fields:['likes']}
+    //     ]
+    //   }
+      )
  
 
     return Pic

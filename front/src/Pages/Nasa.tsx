@@ -32,7 +32,7 @@ function Nasa() {
   }
   
   async function handleData(){
-        const key = '';
+        const key = 'p9rD7ZTgD0AgYz29qAWpbas36swmMlw2cndTj87I';
       let url = `https://api.nasa.gov/planetary/apod?api_key=${key}` 
       const response  = await fetch(url, {method: "GET",
       headers: {
@@ -85,7 +85,7 @@ function Nasa() {
             <div className='c9'></div>
           </div>
           <div className='topgallery'>
-          <button>GALLERIES</button>
+          <button onClick={()=> navigation('/Galleries')}>GALLERIES</button>
           </div>
           <div className="nasaPod">
           <button>NASA POD</button>
