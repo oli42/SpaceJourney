@@ -3,7 +3,9 @@ import { userContext } from '../Context/userContext';
 
 
 function Delete(data: any) {
-    const user = useContext(userContext);
+    // const user = useContext(userContext);
+    const user = localStorage.getItem('data');
+
 
     async function handleDeletePic() {
         let url: string = 'http://localhost:4000/deletePic';
@@ -14,7 +16,7 @@ function Delete(data: any) {
         },
         body: JSON.stringify({
             title: data.data.title,
-            UserId: user?.userState.id,
+            UserId: user,
         })
       })
       const result = await response.json();
