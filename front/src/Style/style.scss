@@ -502,10 +502,6 @@
     position: relative;
     grid-area: photo; 
     background-image: url(../img/leftMoon.webp);
-    // background-image: url(./img/BlueSunGlaring.jpg);
-    // justify-content: center;
-     
-    // background-image: url(./img/astronaut-60582_1920.jpg);
     background-color: white;
 
     background-size: cover;
@@ -581,8 +577,6 @@
       max-height: 800px;
       min-height: 800px;
       border-radius: 10px;
-    
-       
     } 
 
     button{
@@ -603,7 +597,6 @@
         &:focus{
           outline:none;
           border: none;
-
         }
     }
 
@@ -640,31 +633,12 @@
       // scroll-padding: 2px;
      
     }
-
-
-    // .buz{
-    //   position: absolute;
-    //   top: 62%;
-    //   left: 44%;
-    //   width: 800px;
-    //   height: 150px;
-
-    //   p{
-    //     font-size: 25px;
-    //   }
-    // }
   }
 
   .Register { 
     position: relative;
     grid-area: photo; 
     background-color: rgb(5, 0, 0);
-  // background-image: url(./img/BlueSunGlaring.jpg);
-
-    // background-image: url(../img/leftMoon.webp);
-    // background-image: url(../img/astronaut-60582_1920.jpg);
-    // background-image: url(./img/Sky_Full_Of_Stars.jpeg);
-    // background-size: cover;
     background-size: 1800px;
     background-repeat: no-repeat;
     font-family: 'nasalization';
@@ -772,8 +746,6 @@
       top: 38%;
       left: 54%;
       transform: translate(-50%, -50%);
-      // background-color: rgb(30, 1, 1);
-      // background-color: transparent;
       background-image: url(../img/astronaut-60582_1920.jpg); 
       background-size: cover;
       background-repeat: no-repeat;
@@ -888,10 +860,9 @@
 
     h2{
       position: relative;
-      // background-color: white;
       transform: translate(-50%, -50%);
       top:1%;
-      left: 33%;
+      left: 31%;
       font-family: 'nasalization';
       text-align: center;
       justify-content: center;
@@ -942,9 +913,6 @@
     position: relative;
     grid-area: photo; 
     background-color: transparent;
-    // background-size: cover;
-    // background-repeat: no-repeat;
-    // font-size: 60px;
     font-family: 'nasalization';
     text-align: center;
     height: 98%;
@@ -954,10 +922,122 @@
     font-size: 18px;
 
     img{
-      max-width: 120px;
-      min-width: 120px;
-      max-height: 80px;
-      min-height: 80px;
+      position: relative;
+      transform: translate(-50%, -50%);
+      top:30%;
+      left: 30%;
+      max-width: 500px;
+      min-width: 500px;
+      max-height: 450px;
+      min-height: 450px;
+      border-radius: 10px;
+       
+    } 
+    p{
+      position: relative;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+      top:46%;
+      left: 56%;
+      font-size: 20px;
+      color:#fdfcfc;
+      text-align: center;
+    }
+
+    button{
+      position: relative;
+      background-color: black;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+      top:4%;
+      left: 44%;
+      color: white;
+      font-size: 20px;
+      height: 20px;
+      padding-bottom: 30px;
+
+
+      &:hover {
+        color: red;
+        border: none;
+      }
+      &:focus{
+        outline:none;
+        border: none;
+
+      }
+    }
+
+    h2{
+      position: relative;
+      // background-color: white;
+      transform: translate(-50%, -50%);
+      top:1%;
+      left: 33%;
+      font-family: 'nasalization';
+      text-align: center;
+      justify-content: center;
+
+    }
+    
+    .infos{
+      position: absolute;
+      background-color:transparent;
+      border-radius: 10px;
+      color:white;
+      font-size: 24px;
+      line-height: 35px;
+      padding-left: 10px;
+      padding-right: 10px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      text-align:justify;
+
+      max-width: 900px;
+      max-height: 600px;
+      // top:-20%;
+      // left: -8%;
+      top:6%;
+      left: 21%;
+      // overflow-y:scroll;
+      // scroll-padding: 2px;
+     
+    }
+
+    
+    .swiper-button-next{
+      color: white !important;
+      position: relative;
+      top:-59%;
+      left: 94%;
+    }
+    .swiper-button-prev {
+      color:white !important;
+      position: relative;
+      top:-57%;
+      left: 11%;
+    }
+
+    
+  }
+
+  .userGal { 
+    position: relative;
+    grid-area: photo; 
+    background-color: transparent;
+    font-family: 'nasalization';
+    text-align: center;
+    height: 98%;
+    color:white;
+    padding-top: 10px;
+    padding-left: 20px;
+    font-size: 18px;
+
+    img{
+      max-width: 1200px;
+      min-width: 1200px;
+      max-height: 800px;
+      min-height: 800px;
       border-radius: 10px;
     
        
@@ -968,7 +1048,7 @@
         background-color: white;
         transform: translate(-50%, -50%);
         top:-3%;
-        left: 32%;
+        left: 36%;
         color: black;
         font-size: 20px;
         height: 30px;
@@ -987,10 +1067,9 @@
 
     h2{
       position: relative;
-      // background-color: white;
       transform: translate(-50%, -50%);
       top:1%;
-      left: 33%;
+      left: 31%;
       font-family: 'nasalization';
       text-align: center;
       justify-content: center;
@@ -1036,5 +1115,6 @@
 
     
   }
+  
   
   

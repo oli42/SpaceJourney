@@ -26,13 +26,13 @@ require('./src/routes/userPics')(app)
 require('./src/routes/deletePic')(app)
 require('./src/routes/userById')(app)
 
-
-app.get('/', (req, res) => res.send('Hello'))
-
-
 app.use(({res}) => {
     const message = 'Impossible de trouver la ressource demandée ! Vous pouvez essayer une autre URL.'
       res.status(404).json({message});
   });
+
+app.get('/', (req, res) => res.send('Hello'))
+
+
 
 app.listen(port, () => console.log(`app has started : http://localhost:${port}`))

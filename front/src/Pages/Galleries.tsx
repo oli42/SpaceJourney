@@ -2,6 +2,12 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { userContext } from '../Context/userContext';
 import Alert from '../Components/Alert';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import { Navigation, EffectFade } from 'swiper';
+import 'swiper/css/navigation';
+import 'swiper/css/effect-fade';
+import UserGal from '../Components/UserGal';
 
 interface Pic {
   url: string, 
@@ -19,16 +25,19 @@ interface User {
     lastUrl: string,
 }
 
+interface navigationProps {
+  id: number
+}
+
 function Galleries() {
 
     let navigation = useNavigate();
-    const [data, setData] = useState<Pic[]>()
     const [userList, setUserList] = useState<User[]>()
-    const [userPics, setUserPics] = useState<Pic[]>()
-    const [hide, setHide] = useState(false);
     const user = useContext(userContext);
+    // const user = localStorage.getItem('data');
+
     const [alertGif, setAlertGif] = useState("gif")
-    let value = user?.userState.id;
+    let value = user;
 
 
     async function handleUsers() {
@@ -41,38 +50,20 @@ function Galleries() {
       })
       const result = await response.json();
       setUserList(result.data)
-      console.log(result)
     }
 
-    async function handleDeletePic(item: Pic) {
-        let url: string = 'http://localhost:4000/deletePic';
-        const response = await fetch(url, { method: "POST",
-        headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin' : '*'
-      },
-      body: JSON.stringify({
-        title: item.title,
-        UserId: user?.userState.id,
-      })
-      })
-      const result = await response.json();
-      }
-    
-    async function handleGetPics() {
-        let url: string = `http://localhost:4000/userPics/${value}`;
-        const response = await fetch(url, { method: "GET",
-        headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin' : '*'
-      }
-      })
-      const result = await response.json();
-      setData(result.data)
-    }
+    const handleSelect = (id: number) => {
+      navigation('/UserGal', {
+        state: {
+          userId: id,
+        }
+      });
+    };
     
     const handleLogOut = () =>{
       user?.setUserState({id: 0, email: '', connected: false});
+      localStorage.clear() 
+
       navigation('/')
     }
     
@@ -124,15 +115,29 @@ function Galleries() {
       <div className="col2"></div>
     </div>
     <div className="galleries">
-        <h2>Users</h2>
+        <Swiper 
+        modules={[Navigation, EffectFade]}
+        navigation
+        // effect='fade'
+        speed={100}
+        spaceBetween={-110}
+        slidesPerView={2}
+        loop
+        className='galleries'
+       
+        >
         {userList?.map((item, index) => (
-            <div key = {index}>
-            <p>Firstname: {item.firstName}<p>
-            </p>Lastname: {item.lastName.charAt(0)}... </p>
-            <p>Nbr of pics: {item.nbrPics} </p>
-            <p>Last pic: <img src={item.lastUrl}/></p>
+        <SwiperSlide key = {index}>
+            <div className='galleries' key = {index}>
+            <p>{item.firstName}'s gallery</p>
+            {/* <p>Lastname: {item.lastName.charAt(0)}... </p> */}
+              <p>Nbr of pics: {item.nbrPics} </p>
+              <button onClick={()=> handleSelect(item.id)}>open</button>
+              <img src={item.lastUrl}/>
             </div>
+        </SwiperSlide>
         )) }
+        </Swiper>
     </div>
     </div>
   )

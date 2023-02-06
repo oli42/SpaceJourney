@@ -6,8 +6,8 @@ import { Navigation, EffectFade } from 'swiper';
 import 'swiper/css/navigation';
 import 'swiper/css/effect-fade';
 import { userContext } from '../Context/userContext';
-import Alert from '../Components/Alert';
-import Delete from '../Components/Delete';
+import Alert from './Alert';
+import { useLocation } from "react-router-dom";
 
 interface Pic {
   url: string, 
@@ -15,20 +15,19 @@ interface Pic {
   explanation: string,
 }
 
-function MyGal() {
+function UserGal() {
 
   let navigation = useNavigate();
   const [data, setData] = useState<Pic[]>()
   const [hide, setHide] = useState(false);
-  // const user = useContext(userContext);
-  const user = localStorage.getItem('data');
-
+  const user = useContext(userContext);
   const [alertGif, setAlertGif] = useState("gif")
-  let value = user;
+  const location = useLocation();
+  let galId = location.state.userId;
 
 
   async function handleGetPics() {
-    let url: string = `http://localhost:4000/userPics/${value}`;
+    let url: string = `http://localhost:4000/userPics/${galId}`;
     const response = await fetch(url, { method: "GET",
     headers: {
     'Content-Type': 'application/json',
@@ -40,8 +39,7 @@ function MyGal() {
 }
 
 const handleLogOut = () =>{
-  // user?.setUserState({id: 0, email: '', connected: false});
-  localStorage.clear() 
+  user?.setUserState({id: 0, email: '', connected: false});
   navigation('/')
 }
 
@@ -64,7 +62,7 @@ const handleGif = (alert: any) => {
       <div className={alertGif}></div>
       <div className="button">
           <div className="register-b2">
-          <button>MY GALLERY</button>
+          <button onClick={()=> navigation('/MyGal')}>MY GALLERY</button>
           </div>
           <div className="login-b2">
             <button onClick={handleLogOut}>LOGOUT</button>
@@ -92,7 +90,7 @@ const handleGif = (alert: any) => {
       <div className="col1"></div>
       <div className="col2"></div>
     </div>
-    <div className="myGal">
+    <div className="userGal">
       <Swiper 
         modules={[Navigation, EffectFade]}
         navigation
@@ -100,14 +98,13 @@ const handleGif = (alert: any) => {
         speed={100}
         slidesPerView={1}
         loop
-        className='myGal'
+        className='userGal'
         >
           {data?.map((item, index) => (
             <SwiperSlide key = {index}>
             <img src={item.url} alt={''}/>
             <h2>{item.title}</h2> 
               <p className='infos'>{hide ? item.explanation : null}</p>
-              <Delete data={item}/>
             <button onClick={()=> {!hide ? setHide(true) : setHide(false)} } >Infos</button>
             </SwiperSlide>
           )) }
@@ -117,4 +114,4 @@ const handleGif = (alert: any) => {
   )
 }
 
-export default MyGal
+export default UserGal

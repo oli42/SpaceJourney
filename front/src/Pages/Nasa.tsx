@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { userContext } from '../Context/userContext';
 import Alert from '../Components/Alert';
+import Add from '../Components/Add';
 
 
 function Nasa() {
@@ -11,28 +12,9 @@ function Nasa() {
   const [hide, setHide] = useState(false);
   const user = useContext(userContext);
   const [alertGif, setAlertGif] = useState("gif")
-
-
-
-  async function handleSavePic() {
-    let url: string = 'http://localhost:4000/createPic';
-    const response = await fetch(url, { method: "POST",
-    headers: {
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin' : '*'
-  },
-  body: JSON.stringify({
-    url: data.image,
-    title: data.title,
-    explanation: data.explanation,
-    UserId: user?.userState.id,
-  })
-  })
-  const result = await response.json();
-  }
   
   async function handleData(){
-        const key = 'p9rD7ZTgD0AgYz29qAWpbas36swmMlw2cndTj87I';
+        const key = '';
       let url = `https://api.nasa.gov/planetary/apod?api_key=${key}` 
       const response  = await fetch(url, {method: "GET",
       headers: {
@@ -44,7 +26,8 @@ function Nasa() {
   }
 
   const handleLogOut = () =>{
-    user?.setUserState({id: 0, email: '', connected: false});
+    // user?.setUserState({id: 0, email: '', connected: false});
+    localStorage.clear() 
     navigation('/')
   }
 
@@ -100,7 +83,7 @@ function Nasa() {
             <img src={data.image} alt={data.title} />
             <h2>{data.title}</h2>
             <p className='infos'>{hide ? data.explanation : null}</p>
-            <button onClick={()=> handleSavePic()}>Add to My Gallery</button>
+            <Add data={data}/>
             <button onClick={()=> {!hide ? setHide(true) : setHide(false)} } >Infos</button>
     </div>
   </div>

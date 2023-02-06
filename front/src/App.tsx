@@ -7,6 +7,7 @@ import MyGal from './Pages/MyGal';
 import Nasa from './Pages/Nasa';
 import { userContext } from './Context/userContext'
 import Galleries from './Pages/Galleries';
+import UserGal from './Components/UserGal';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         <Route path="mygal" element={<MyGal />}/>
         <Route path="nasa" element={<Nasa />}/>
         <Route path="galleries" element={<Galleries />}/>
+        <Route path="usergal" element={<UserGal />}/>
       </Routes>
     </userContext.Provider>
   )

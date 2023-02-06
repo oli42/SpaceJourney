@@ -8,6 +8,7 @@ function Home() {
 
   let navigation = useNavigate();
   const user = useContext(userContext);
+
   const [alertGif, setAlertGif] = useState("gif")
 
   const handleGif = (alert: any) => {
@@ -52,7 +53,11 @@ function Home() {
             <div className='c9'></div>
           </div>
           <div className='topgallery'>
-          <button>GALLERIES</button>
+          {user?.userState.connected ?
+          <button onClick={() => navigation('/Galleries')}>GALLERIES</button>
+          :
+          <button >GALLERIES</button>
+          }
           </div>
           <div className="nasaPod">
           {user?.userState.connected ?

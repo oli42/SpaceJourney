@@ -29,15 +29,14 @@ function Login() {
 })
 
   const result = await response.json();
-  console.log('login',result)
   
   if (result.message == "A problem occurred. "){
-    // navigation("/");
     setError("wrong identification");
     return ;
   }
   else{
     user?.setUserState({id: result.data.id, email: result.data.email, connected: true})
+    localStorage.setItem('data', JSON.stringify(result.data.id));
     navigation('/');
   }
 
