@@ -1,13 +1,12 @@
-import React, { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { userContext } from '../Context/userContext';
-import Alert from '../Components/Alert';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import { Navigation, EffectFade } from 'swiper';
 import 'swiper/css/navigation';
 import 'swiper/css/effect-fade';
-import UserGal from '../Components/UserGal';
+import NavBar from '../Components/NavBar';
 
 interface Pic {
   url: string, 
@@ -34,11 +33,6 @@ function Galleries() {
     let navigation = useNavigate();
     const [userList, setUserList] = useState<User[]>()
     const user = useContext(userContext);
-    // const user = localStorage.getItem('data');
-
-    const [alertGif, setAlertGif] = useState("gif")
-    let value = user;
-
 
     async function handleUsers() {
         let url: string = 'http://localhost:4000/users';
@@ -59,20 +53,6 @@ function Galleries() {
         }
       });
     };
-    
-    const handleLogOut = () =>{
-      user?.setUserState({id: 0, email: '', connected: false});
-      localStorage.clear() 
-
-      navigation('/')
-    }
-    
-    const handleGif = (alert: any) => {
-      setAlertGif(alert);
-      setTimeout(()=>{
-        setAlertGif('gif')
-      },16000)
-    }
 
     useEffect(() => {
         handleUsers()
@@ -82,38 +62,7 @@ function Galleries() {
     <div className="container">
     <div className="header"></div>
     <div className="footer"></div>
-    <div className="register">
-      <div className={alertGif}></div>
-      <div className="button">
-          <div className="register-b2">
-          <button onClick={()=> navigation('/MyGal')}>MY GALLERY</button>
-          </div>
-          <div className="login-b2">
-            <button onClick={handleLogOut}>LOGOUT</button>
-          </div>
-          <div className="alert">
-            <div className='c1'></div>
-            <div className='c2'></div>
-            <div className='c3'></div>
-            <div className='c4'></div>
-            <div className='c5'></div>
-            <div className='c6'></div>
-            <div className='c7'></div>
-            <div className='c8'></div>
-            <div className='c9'></div>
-          </div>
-          <div className='topgallery'>
-          <button>GALLERIES</button>
-          </div>
-          <div className="nasaPod">
-          <button onClick={() => navigation('/Nasa')}>NASA POD</button>
-          </div>
-          <Alert changeGif={(alert : any) => handleGif(alert)} />
-        <div className="alert3"><button></button></div>
-      </div>
-      <div className="col1"></div>
-      <div className="col2"></div>
-    </div>
+    <NavBar/>
     <div className="galleries">
         <Swiper 
         modules={[Navigation, EffectFade]}
@@ -126,13 +75,13 @@ function Galleries() {
         className='galleries'
        
         >
-        {userList?.map((item, index) => (
+        { userList?.map((item, index) => (
         <SwiperSlide key = {index}>
             <div className='galleries' key = {index}>
             <p>{item.firstName}'s gallery</p>
             {/* <p>Lastname: {item.lastName.charAt(0)}... </p> */}
               <p>Nbr of pics: {item.nbrPics} </p>
-              <button onClick={()=> handleSelect(item.id)}>open</button>
+              <button onClick={()=> handleSelect(item.id)}>view</button>
               <img src={item.lastUrl}/>
             </div>
         </SwiperSlide>

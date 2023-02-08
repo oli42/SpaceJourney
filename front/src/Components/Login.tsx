@@ -3,6 +3,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import '../Style/style.scss'
 import { Navigate, useNavigate } from 'react-router-dom';
 import { userContext } from '../Context/userContext';
+import NavBar from './NavBar';
 
 
 type FormValues = {
@@ -26,8 +27,7 @@ function Login() {
   },
   body: JSON.stringify(infos)
 
-})
-
+  })
   const result = await response.json();
   
   if (result.message == "A problem occurred. "){
@@ -39,10 +39,8 @@ function Login() {
     localStorage.setItem('data', JSON.stringify(result.data.id));
     navigation('/');
   }
-
 }
   
-
   const onSubmit: SubmitHandler<FormValues> = () =>{
     const  infos = getValues()
     handleClick(infos);
@@ -53,47 +51,12 @@ function Login() {
     <div className="container">
     <div className="header"></div>
     <div className="footer"></div>
-    <div className="register">
-      <div className="gif"></div>
-      <div className="button">
-          <div className="register-b">
-          <button onClick={() => navigation('/Register')}>REGISTER</button>
-          </div>
-          <div className="login-b">
-            <button>LOGIN</button>
-          </div>
-          <div className="alert">
-            <div className='c1'></div>
-            <div className='c2'></div>
-            <div className='c3'></div>
-            <div className='c4'></div>
-            <div className='c5'></div>
-            <div className='c6'></div>
-            <div className='c7'></div>
-            <div className='c8'></div>
-            <div className='c9'></div>
-          </div>
-          <div className='topgallery'>
-          <button>GALLERIES</button>
-          </div>
-          <div className="nasaPod">
-          <button>NASA POD</button>
-          </div>
-        <div className="alert2">
-          <button>ALERT</button>
-        </div>
-        <div className="alert3"><button></button></div>
-      </div>
-      <div className="col1"></div>
-      <div className="col2"></div>
-    </div>
+    <NavBar/>
     <div className="Login">
     <div className='formWrapper'>
         <form onSubmit={handleSubmit(onSubmit)}>
           <input type="email" {...register("email", { required: true })} placeholder='email'/>
           <input type="password" {...register("password", { required: true })} placeholder='password'/>
-
-          {/* <input type="submit" /> */}
           <button type="submit">Submit</button>
           <p>{error}</p>
         </form>
