@@ -11,7 +11,7 @@ function Nasa() {
   const user = useContext(userContext);
   
   async function handleData(){
-        const key = 'p9rD7ZTgD0AgYz29qAWpbas36swmMlw2cndTj87I';
+        const key = '';
       let url = `https://api.nasa.gov/planetary/apod?api_key=${key}` 
       const response  = await fetch(url, {method: "GET",
       headers: {
